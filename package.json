@@ -1,0 +1,21 @@
+{
+  "name": "basic-uuid",
+  "description": "Basic UUID class for generating random UUIDs",
+  "version": "0.0.1",
+  "author": "Hector Larios <hectorslarios@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/hectorlarios/basic-uuid.git",
+  "keywords": [
+    "es6",
+    "react",
+    "basic",
+    "uuid",
+    "v1"
+  ],
+  "main": "lib/UUID.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ]
+}
