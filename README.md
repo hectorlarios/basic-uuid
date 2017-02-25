@@ -7,6 +7,7 @@ uses `Math.random()` and the current time.
 ``
 $ npm install basic-uuid
 ``
+
 ## API
 
 ```

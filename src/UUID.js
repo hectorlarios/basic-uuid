@@ -1,3 +1,4 @@
+
 /**
  * basic-uuid
  * Copyright(c) 2017 Hector Larios
