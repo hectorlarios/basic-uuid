@@ -1,7 +1,5 @@
 # basic-uuid
 
-[![NPM Version][npm-image]][npm-url]
-
 A time based UUID instance for basic application level ids. The random generation of the uuid value is not secure--it 
 uses `Math.random()` and the current time. 
 
