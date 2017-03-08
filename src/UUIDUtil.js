@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * basic-uuid
  * Copyright(c) 2017 Hector Larios
@@ -10,11 +12,11 @@
  * @param hex - the string to be formatted to an UUID.
  * @returns {string} - hex string formatted to represent a UUID.
  */
-export function formatUUIDFromHex(hex)
+function formatUUIDFromHex(hex)
 {
-  const pattern = /^([a-f0-9]{8})([a-f0-9]{4})([a-f0-9]{4})([a-f0-9]{4})([a-f0-9]{12})$/gi;
+  var _pattern = /^([a-f0-9]{8})([a-f0-9]{4})([a-f0-9]{4})([a-f0-9]{4})([a-f0-9]{12})$/gi;
 
-  return hex.replace(pattern, '$1-$2-$3-$4-$5');
+  return hex.replace(_pattern, '$1-$2-$3-$4-$5');
 }
 
 /**
@@ -25,16 +27,18 @@ export function formatUUIDFromHex(hex)
  * @param count - the max length of the hex string.
  * @returns {string} - the hex string that may have been prepended with 0's.
  */
-export function padLeft(hex, count = 2)
+function padLeft(hex, count)
 {
-  let value = hex;
+  var _value = hex;
 
-  while(value.length < count)
+  var _count = count || 2;
+
+  while(_value.length < _count)
   {
-    value = '0' + value;
+    _value = '0' + _value;
   }
 
-  return value;
+  return _value;
 }
 
 /**
@@ -43,25 +47,25 @@ export function padLeft(hex, count = 2)
  * @param hex - string to be converted to a list of decimal values
  * @returns {Array} - list containing decimal values that was created from the hex string.
  */
-export function hexToDigitList(hex)
+function hexToDigitList(hex)
 {
-  const list = [];
+  var _list = [];
 
-  let value;
+  var _value;
 
-  [...hex].map((char, index) =>
+  hex.split('').map(function(char, index)
   {
     if(index % 2 == 0)
     {
-      value = char;
+      _value = char;
     }
     else
     {
-      list.push(parseInt(value + char, 16));
+      _list.push(parseInt(_value + char, 16));
     }
   });
 
-  return list;
+  return _list;
 }
 
 /**
@@ -70,16 +74,16 @@ export function hexToDigitList(hex)
  * @param list - a list of decimals that will be converted to a hex string.
  * @returns {string} - hex string tha was crated from the list of decimal values.
  */
-export function digitListToHex(list)
+function digitListToHex(list)
 {
-  let hex = '';
+  var _value = '';
 
-  list.map(item =>
+  list.map(function(item)
   {
-    hex += padLeft(item.toString(16));
+    _value += padLeft(item.toString(16));
   });
 
-  return hex;
+  return _value;
 }
 
 /**
@@ -88,17 +92,30 @@ export function digitListToHex(list)
  *
  * @returns {Array} list of numbers that represent the UUID value.
  */
-export function createRandomDigitList()
+function createRandomDigitList()
 {
-  const time = (new Date()).getTime();
+  var _time = (new Date()).getTime();
 
-  const hex = padLeft(time.toString(16).substr(-8), 8);
+  var _hex = padLeft(_time.toString(16).substr(-8), 8);
 
-  const list = hexToDigitList(hex);
+  var _hexList = hexToDigitList(_hex);
 
-  const value = [...('000000000000')].map(() => {return parseInt(Math.random() * 0xFF)});
+  var _value = '............'.split('').map(function(){return parseInt(Math.random() * 0xFF)});
 
-  Array.prototype.splice.apply(value, [10, 0].concat(list));
+  Array.prototype.splice.apply(_value, [10, 0].concat(_hexList));
 
-  return value;
+  return _value;
 }
+
+module.exports = {
+
+  formatUUIDFromHex: formatUUIDFromHex,
+
+  padLeft: padLeft,
+
+  hexToDigitList: hexToDigitList,
+
+  digitListToHex: digitListToHex,
+
+  createRandomDigitList: createRandomDigitList
+};
