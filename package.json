@@ -1,7 +1,7 @@
 {
   "name": "basic-uuid",
   "description": "Basic UUID class for generating random UUIDs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Hector Larios <hectorslarios@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/hectorlarios/basic-uuid.git",
@@ -12,7 +12,7 @@
     "uuid",
     "v1"
   ],
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "files": [
     "LICENSE",
     "README.md",
